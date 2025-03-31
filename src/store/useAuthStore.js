@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 import io from "socket.io-client";
+import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -46,7 +47,12 @@ export const useAuthStore = create((set, get) => ({
   login: async (data) => {
     set({ isLoggingIn: true });
     try {
-      const res = await axiosInstance.post("/auth/login", data);
+      console.log("first");
+      // const res = await axiosInstance.post("/auth/login", data);
+      const res = await axios.get(`${API_URL}/api`, {
+        withCredentials: true,
+        params: data,
+      });
       set({ authUser: res.data });
       toast.success("Logged in successfully");
 
