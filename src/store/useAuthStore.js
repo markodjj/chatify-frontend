@@ -48,11 +48,12 @@ export const useAuthStore = create((set, get) => ({
     set({ isLoggingIn: true });
     try {
       console.log("first");
-      // const res = await axiosInstance.post("/auth/login", data);
-      const res = await axios.post(`${API_URL}/api`, {
-        withCredentials: true,
-        params: data,
-      });
+      const res = await axiosInstance.post("/auth/login", data);
+      // const res = await axios.get(`${API_URL}/api`, {
+      //   withCredentials: true,
+      //   params: data,
+      // });
+
       set({ authUser: res.data });
       toast.success("Logged in successfully");
 
