@@ -49,7 +49,7 @@ export const useAuthStore = create((set, get) => ({
     try {
       console.log("first");
       // const res = await axiosInstance.post("/auth/login", data);
-      const res = await axios.get(`${API_URL}/api`, {
+      const res = await axios.post(`${API_URL}/api`, {
         withCredentials: true,
         params: data,
       });
